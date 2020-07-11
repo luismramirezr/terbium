@@ -1,22 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 
 import { FaGithub } from 'react-icons/fa';
 import { Container, Footer } from './styles';
 
-import * as NotificationActions from '~/store/ducks/Notification/actions';
-
 export default function App() {
-  const dispatch = useDispatch();
-
-  function showNotification() {
-    dispatch(
-      NotificationActions.addNotification({
-        type: 'success',
-        message: 'Hello World!',
-      })
-    );
-  }
 
   return (
     <Container>
@@ -36,7 +23,7 @@ export default function App() {
           There is a sample action to produce a notification with
           react-toastify.
         </p>
-        <button type="button" onClick={showNotification}>
+        <button type="button">
           Show me!
         </button>
         <p>For templating and styling, styled-components is used.</p>
