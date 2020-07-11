@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  web-client:
+    stdin_open: true #fix for react-script 3.4.1 exiting with code 0
+    build: ./services/web-client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./services/web-client/__tests__:/usr/src/app/__tests__
+      - ./services/web-client/src:/usr/src/app/src
+      - ./services/web-client/public:/usr/src/app/public

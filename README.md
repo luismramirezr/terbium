@@ -32,6 +32,9 @@ As this service will be based in a serverless structure, the more it it's used, 
 
 ## Service Design
 
+![alt text](https://github.com/luismramirezr/terbium/blob/master/Structure.png?raw=true "Service Design")
+
+
 - Web client is a React.JS application stored in a S3 bucket which is delivered by a Cloudfront Distribution hooked to a domain registered in Route53
 
 - The web client access the DynamoDB database throught a Lambda function
