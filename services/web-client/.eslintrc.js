@@ -26,7 +26,7 @@ module.exports = {
     'prettier/prettier': 'off',
     'react/jsx-filename-extension': ['warn', { extensions: ['.tsx', '.ts'] }],
     'import/prefer-default-export': 'off',
-    'no-console': ['error', { allow: ['tron'] }],
+    'react/prop-types': 0,
   },
   settings: {
     'import/parsers': {

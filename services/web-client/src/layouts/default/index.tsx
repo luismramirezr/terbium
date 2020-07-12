@@ -1,18 +1,9 @@
-import React, { ReactElement } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
 import { Wrapper } from './styles';
 
-interface Props {
-  children: ReactElement;
-}
-
-const AuthLayout: React.FC<Props> = ({ children }) => {
+const AuthLayout: React.FC = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
-};
-
-AuthLayout.propTypes = {
-  children: PropTypes.element.isRequired,
 };
 
 export default AuthLayout;

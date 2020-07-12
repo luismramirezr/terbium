@@ -1,43 +1,121 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { FaGithub } from 'react-icons/fa';
-import { Container, Footer } from './styles';
+import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import {
+  InputAdornment,
+  Container,
+  Box,
+  Paper,
+  Grid,
+  useTheme,
+} from '@material-ui/core';
+import { useForm, FormProvider } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers';
 
-export default function App() {
+import { TextField, PasswordField, Checkbox, Button } from '~/components/ux/form';
+
+import logo from '~/assets/images/terbium@4x.png';
+
+import formSchema from './formSchema';
+import { Wrapper } from './styles';
+
+const Home = () => {
+  const { palette } = useTheme();
+  const formMethods = useForm({
+    resolver: yupResolver(formSchema),
+  });
+  const { handleSubmit } = formMethods;
+
+  const [isFetching, setIsFetching] = React.useState(false);
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+    setIsFetching(true);
+  };
 
   return (
-    <Container>
+    <Wrapper>
       <div>
-        <h1>
-          {'<'} Coding Labs {'/>'}
-        </h1>
-        <h2>Create-React-App Template</h2>
-        <p>
-          This template comes with a bunch of features to help you get started.
-        </p>
-        <p>
-          Redux-Saga is already implemented with Reactotron for debugging and
-          reduxsauce to reduce cluttering.
-        </p>
-        <p>
-          There is a sample action to produce a notification with
-          react-toastify.
-        </p>
-        <button type="button">
-          Show me!
-        </button>
-        <p>For templating and styling, styled-components is used.</p>
-        <p>
-          Some other functions include: Prettier/ESLint with Airbnb guide,
-          pre-commit hooks, extended support for Jest tests, among others .
-        </p>
-        <h2>Happy Coding!</h2>
+        <Container maxWidth="xs">
+          <Paper>
+            <Box p={4}>
+              <FormProvider {...formMethods}>
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  autoComplete="new-password"
+                >
+                  <Grid
+                    container
+                    direction="column"
+                    alignItems="center"
+                    spacing={3}
+                  >
+                    <Grid item>
+                      <img src={logo} alt="Terbium" />
+                    </Grid>
+                    <Grid
+                      item
+                      container
+                      direction="column"
+                      spacing={1}
+                      alignItems="stretch"
+                    >
+                      <Grid item>
+                        <TextField
+                          fullWidth
+                          placeholder="Email"
+                          name="eml"
+                          disabled={isFetching}
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <AiOutlineMail color={palette.primary.main} />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                      </Grid>
+                      <Grid item>
+                        <PasswordField
+                          fullWidth
+                          placeholder="Password"
+                          name="psw"
+                          disabled={isFetching}
+                          InputProps={{
+                            autoComplete: 'new-password',
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <AiOutlineLock color={palette.primary.main} />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                      </Grid>
+                      <Grid item container justify="center">
+                        <Checkbox name="rememberMe" label="Remember me" disabled={isFetching} />
+                      </Grid>
+                    </Grid>
+
+                    <Grid item>
+                      <Button variant="contained" color="primary" type="submit" isFetching={isFetching}>
+                        Log In
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button href="#forgot-password" size="small">
+                        Forgot Password?
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </form>
+              </FormProvider>
+            </Box>
+          </Paper>
+        </Container>
       </div>
-      <Footer>
-        <a href="https://github.com/codinglabsdev">
-          <FaGithub size={32} />
-        </a>
-      </Footer>
-    </Container>
+    </Wrapper>
   );
-}
+};
+
+export default Home;

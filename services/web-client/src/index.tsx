@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/scss/main.scss';
 import 'typeface-roboto';
-
-import GlobalStyle from '~/styles/global';
 
 import App from '~/App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <>
-    <ToastContainer />
-    <GlobalStyle />
     <App />
   </>,
   document.getElementById('root')
