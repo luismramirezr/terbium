@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'react-toastify/scss/main.scss';
 import 'typeface-roboto';
 
 import App from '~/App';
